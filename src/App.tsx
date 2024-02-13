@@ -1,34 +1,53 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0);
+const questionList = [
+  {
+    id: "q1",
+    title: "问卷1",
+    isPublished: true,
+  },
+  {
+    id: "q2",
+    title: "问卷2",
+    isPublished: false,
+  },
+  {
+    id: "q3",
+    title: "问卷3",
+    isPublished: true,
+  },
+  {
+    id: "q4",
+    title: "问卷4",
+    isPublished: false,
+  },
+];
 
+const handleEdit = (id: string) => {
+  console.log("editclick", id);
+};
+
+function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React18</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <h1>问卷列表页</h1>
+
+      {questionList.map((item) => {
+        const { id, title, isPublished } = item;
+        return (
+          <div className="item" key={id}>
+            <strong>{title}</strong>
+            <div
+              className="plublished"
+              style={isPublished ? { color: "green" } : { color: "red" }}
+            >
+              {isPublished ? "已发布" : "未发布"}
+            </div>
+            <button onClick={() => handleEdit(id)}>编辑问卷</button>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
