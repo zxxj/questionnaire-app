@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 interface PropsType {
   id: string;
@@ -18,6 +18,14 @@ const QuestionCard: FC<PropsType> = (props) => {
   const deleteQuestion = () => {
     handleDelete && handleDelete(id);
   };
+
+  useEffect(() => {
+    console.log("question card mounted"); // 挂载完成
+
+    return () => {
+      console.log("question unmounted", id); // 销毁组件
+    };
+  });
 
   return (
     <>

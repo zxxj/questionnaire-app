@@ -1,17 +1,27 @@
 import type { FC } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuestionCard from "./QuestionCard";
 import { produce } from "immer";
 
 import "../styles/questionList1.css";
 
 const QuestionList1: FC = () => {
+  // []: 表示无依赖,组件初次渲染时会执行
+  useEffect(() => {
+    console.log("ajax请求");
+  }, []);
+
   const [questionList, setQuestionList] = useState([
     { id: "q1", title: "问卷1", isPublished: false },
     { id: "q2", title: "问卷2", isPublished: true },
     { id: "q3", title: "问卷3", isPublished: false },
     { id: "q4", title: "问卷4", isPublished: true },
   ]);
+
+  // [questionList]: 表示依赖questionList,questionList中的数据发生变化时,就会执行
+  useEffect(() => {
+    console.log("questionList");
+  }, [questionList]);
 
   const handleEdit = (id: string) => {
     console.log("editclick", id);
