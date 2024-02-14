@@ -1,10 +1,11 @@
 import type { FC } from "react";
 import { useState } from "react";
 import QuestionCard from "./QuestionCard";
+import { produce } from "immer";
 
 import "../styles/questionList1.css";
 
-const questionList1: FC = () => {
+const QuestionList1: FC = () => {
   const [questionList, setQuestionList] = useState([
     { id: "q1", title: "问卷1", isPublished: false },
     { id: "q2", title: "问卷2", isPublished: true },
@@ -15,12 +16,9 @@ const questionList1: FC = () => {
   const handleEdit = (id: string) => {
     console.log("editclick", id);
     setQuestionList(
-      questionList.map((item) => {
-        if (item.id !== id) return item;
-        return {
-          ...item,
-          isPublished: true,
-        };
+      produce((draft) => {
+        const currentItem = draft.find((item) => item.id === id);
+        if (currentItem) currentItem.isPublished = true;
       }),
     );
   };
@@ -29,22 +27,21 @@ const questionList1: FC = () => {
     const r = Math.random().toString().slice(-3);
 
     setQuestionList(
-      questionList.concat([
-        {
+      produce((draft) => {
+        draft.push({
           id: "q" + r,
           title: "问卷" + r,
           isPublished: false,
-        },
-      ]),
+        });
+      }),
     );
   };
 
   const handleDelete = (id: string) => {
     setQuestionList(
-      // 删除 filter
-      questionList.filter((item) => {
-        if (item.id === id) return false;
-        else return true;
+      produce((draft) => {
+        const currentItem = draft.findIndex((item) => item.id === id);
+        draft.splice(currentItem, 1);
       }),
     );
   };
@@ -62,13 +59,14 @@ const questionList1: FC = () => {
             title={title}
             isPublished={isPublished}
             handleEdit={handleEdit}
-            handleAdd={handleAdd}
             handleDelete={handleDelete}
           />
         );
       })}
+
+      <button onClick={handleAdd}>新增问卷</button>
     </>
   );
 };
 
-export default questionList1;
+export default QuestionList1;
