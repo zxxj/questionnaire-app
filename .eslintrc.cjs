@@ -15,5 +15,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+
+    'prefer-const': 'off'
   },
 };
