@@ -5,12 +5,18 @@ import QuestionList1 from "./components/questionList1";
 // import UseStateDemo3 from "./demo/useStateDemo03";
 // import ImmerDemo from "./demo/immerDemo";
 // import UseEffectDemo from "./demo/useEffectDemo";
+// import UseRefDemo from "./demo/useRefDemo";
+// import UseMemoDemo from "./demo/useMemoDemo";
+import UseCallbackDemo from "./demo/useCallbackDemo";
 
 function App() {
   return (
     <>
-      <QuestionList1 />
+      {/* <QuestionList1 /> */}
       {/* <UseEffectDemo /> */}
+      {/* <UseRefDemo /> */}
+      {/* <UseMemoDemo /> */}
+      <UseCallbackDemo />
     </>
   );
 }
