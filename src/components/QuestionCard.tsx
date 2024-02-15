@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import classnames from "classnames";
-import "../styles/questionCard.css";
+import styles from "../styles/QuestionCard.module.css";
 
 interface PropsType {
   id: string;
@@ -13,9 +13,11 @@ interface PropsType {
 const QuestionCard: FC<PropsType> = (props) => {
   const { id, title, isPublished, handleEdit, handleDelete } = props;
 
-  const questionItem = classnames({
-    questionItem: true,
-    publishTrue: isPublished,
+  const questionItem = styles["questionItem"];
+  const publishedClass = styles.publishTrue; // 等同于styles.publishTrue
+  const itemClassName = classnames({
+    [questionItem]: true,
+    [publishedClass]: isPublished,
   });
 
   const edit = () => {
@@ -36,7 +38,7 @@ const QuestionCard: FC<PropsType> = (props) => {
 
   return (
     <>
-      <div className={questionItem} key={id}>
+      <div className={itemClassName} key={id}>
         <strong>{title}</strong>
         <div className="isPublished">{isPublished ? "已发布" : "未发布"}</div>
         <button onClick={edit}>编辑问卷</button>
