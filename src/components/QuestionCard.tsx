@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import classnames from "classnames";
-import styles from "../styles/QuestionCard.module.css";
+import styles from "../styles/QuestionCard.module.scss";
 
 interface PropsType {
   id: string;
