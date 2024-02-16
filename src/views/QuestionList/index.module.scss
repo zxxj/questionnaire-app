@@ -1,0 +1,19 @@
+
+.container {
+	margin: 100px 50px 0 50px;
+	background-color: #f5f5f5;
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.left {
+			font-size: 25px;
+			font-weight: bold;
+		}
+
+		.right {
+			font-size: 20px;
+			color: red;
+		}
+	}
+}

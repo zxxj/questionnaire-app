@@ -1,5 +1,4 @@
 import "./styles/App.css";
-import QuestionList1 from "./components/questionList1";
 // import UseStateDemo1 from "./demo/useStateDemo01";
 // import UseStateDemo2 from "./demo/useStateDemo02";
 // import UseStateDemo3 from "./demo/useStateDemo03";
@@ -11,6 +10,8 @@ import QuestionList1 from "./components/questionList1";
 // import useTitle from "./hooks/useTitle";
 // import useMousePoint from "./hooks/useMousePoint";
 // import useGetinfo from "./hooks/useGetinfo";
+
+import QuestionList from "./views/QuestionList";
 
 function App() {
   // 自定义hook: 组件挂载完成后更新网页的标题
@@ -24,7 +25,6 @@ function App() {
 
   return (
     <>
-      <QuestionList1 />
       {/* <UseEffectDemo /> */}
       {/* <UseRefDemo /> */}
       {/* <UseMemoDemo /> */}
@@ -33,6 +33,8 @@ function App() {
       <div>{y}</div>
 
       <div>{loading ? "加载中" : info}</div> */}
+
+      <QuestionList />
     </>
   );
 }
