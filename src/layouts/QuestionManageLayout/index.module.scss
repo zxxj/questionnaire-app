@@ -1,16 +1,14 @@
 .container {
-	width: 1200px;
+	width: 1400px;
 	margin: 0 auto;
 	display: flex;
 
 	.left {
-		width: 200px;
-		background-color: blue;
+		width: 150px;
 	}
 
 	.right {
 		flex: 1;
 		margin-left: 30px;
-		background-color: red;
 	}
 }

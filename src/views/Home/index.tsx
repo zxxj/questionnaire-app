@@ -1,8 +1,11 @@
 import { FC } from "react";
 // import styles from "./index.module.scss";
 import { useNavigate } from "react-router-dom";
+import { useTitle } from "ahooks";
+import { Button } from "antd";
 
 const Home: FC = () => {
+  useTitle("问卷鑫 - 首页");
   const nav = useNavigate();
 
   const handleLogin = () => {
@@ -17,6 +20,7 @@ const Home: FC = () => {
     <>
       <div>Home</div>
       <button onClick={handleLogin}>点击登录</button>
+      <Button type="primary">antd button</Button>
     </>
   );
 };
