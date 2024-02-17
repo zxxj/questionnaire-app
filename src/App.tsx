@@ -11,7 +11,9 @@ import "./styles/App.css";
 // import useMousePoint from "./hooks/useMousePoint";
 // import useGetinfo from "./hooks/useGetinfo";
 
-import QuestionList from "./views/QuestionList";
+// import QuestionList from "./views/QuestionList";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 
 function App() {
   // 自定义hook: 组件挂载完成后更新网页的标题
@@ -34,7 +36,9 @@ function App() {
 
       <div>{loading ? "加载中" : info}</div> */}
 
-      <QuestionList />
+      {/* <QuestionList /> */}
+
+      <RouterProvider router={router} />
     </>
   );
 }
