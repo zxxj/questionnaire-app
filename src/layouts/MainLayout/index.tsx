@@ -23,7 +23,9 @@ const MainLayout: FC = () => {
         <Outlet />
       </Content>
 
-      <Footer className={styles.footer}>main layout footer</Footer>
+      <Footer className={styles.footer}>
+        <p>2023.02.14 created by @zhangxinxin</p>
+      </Footer>
     </Header>
   );
 };

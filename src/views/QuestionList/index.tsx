@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import styles from "./index.module.scss";
 import QuestionCard from "../../components/QuestionCard";
+import { Input } from "antd";
 
 const qeustionData = [
   {
@@ -56,10 +57,12 @@ const QuestionList: FC = () => {
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.left}>我的问卷</div>
-          <div className={styles.right}>输入框</div>
+          <div className={styles.right}>
+            <Input placeholder="请输入问卷名称" />
+          </div>
         </div>
 
-        <div className="content">
+        <div className={styles.content}>
           {data.map((item) => {
             const { _id } = item;
 
