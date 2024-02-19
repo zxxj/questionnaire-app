@@ -10,6 +10,7 @@ import "./styles/App.css";
 // import useTitle from "./hooks/useTitle";
 // import useMousePoint from "./hooks/useMousePoint";
 // import useGetinfo from "./hooks/useGetinfo";
+// import AndtInputDemo from "./demo/受控组件/antdInputDemo";
 
 // import QuestionList from "./views/QuestionList";
 import { RouterProvider } from "react-router-dom";
@@ -37,6 +38,7 @@ function App() {
       <div>{loading ? "加载中" : info}</div> */}
 
       {/* <QuestionList /> */}
+      {/* <AndtInputDemo /> */}
 
       <RouterProvider router={router} />
     </>

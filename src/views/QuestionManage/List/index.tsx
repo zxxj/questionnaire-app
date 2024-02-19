@@ -1,8 +1,9 @@
 import { FC, useState } from "react";
 import styles from "./index.module.scss";
 import QuestionCard from "../../../components/QuestionCard";
-import { Input, Empty } from "antd";
+import { Empty } from "antd";
 import { useTitle } from "ahooks";
+import SearchList from "../../../components/SearchList";
 
 const qeustionData = [
   {
@@ -60,7 +61,7 @@ const QuestionList: FC = () => {
         <div className={styles.header}>
           <div className={styles.left}>星标问卷</div>
           <div className={styles.right}>
-            <Input placeholder="请输入问卷名称" />
+            <SearchList />
           </div>
         </div>
 

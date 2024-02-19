@@ -1,6 +1,8 @@
 import { FC, useState } from "react";
 import styles from "./index.module.scss";
-import { Table, Tag, Input, Empty, Button, Space, Modal } from "antd";
+import { Table, Tag, Empty, Button, Space, Modal } from "antd";
+import { useTitle } from "ahooks";
+import SearchList from "../../../components/SearchList";
 
 const qeustionData = [
   {
@@ -86,6 +88,7 @@ const columns = [
 ];
 
 const QuestionTrash: FC = () => {
+  useTitle("问卷鑫 - 回收站");
   const { confirm } = Modal;
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
 
@@ -138,7 +141,7 @@ const QuestionTrash: FC = () => {
       <div className={styles.header}>
         <div className={styles.left}>星标问卷</div>
         <div className={styles.right}>
-          <Input placeholder="请输入问卷名称" />
+          <SearchList />
         </div>
       </div>
 
