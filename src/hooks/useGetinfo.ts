@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+// 模拟网络请求获取用户信息
+
 const getInfo = (): Promise<string> => {
   return new Promise((resolve) => {
     setTimeout(() => {

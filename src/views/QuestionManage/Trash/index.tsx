@@ -1,54 +1,9 @@
 import { FC, useState } from "react";
 import styles from "./index.module.scss";
-import { Table, Tag, Empty, Button, Space, Modal } from "antd";
+import { Table, Tag, Empty, Button, Space, Modal, Spin } from "antd";
 import { useTitle } from "ahooks";
 import SearchList from "../../../components/SearchList";
-
-const qeustionData = [
-  {
-    _id: "1", // id
-    title: "问卷1", // 问卷名称
-    isPublished: false, // 是否发布
-    isStar: false, // 是否标星
-    answerCount: 5, // 答卷人数
-    createdAt: "3月10日 13:23", // 问卷创建日期
-  },
-  {
-    _id: "2",
-    title: "问卷2",
-    isPublished: false,
-    isStar: false,
-    answerCount: 10,
-    createdAt: "3月11日 17:10",
-  },
-
-  {
-    _id: "3",
-    title: "问卷3",
-    isPublished: true,
-    isStar: true,
-    answerCount: 20,
-    createdAt: "3月14日 06:05",
-  },
-
-  {
-    _id: "4",
-    title: "问卷4",
-    isPublished: true,
-    isStar: false,
-    answerCount: 88,
-    createdAt: "3月20日 09:08",
-  },
-
-  {
-    _id: "5",
-    title: "问卷5",
-    isPublished: false,
-    isStar: false,
-    answerCount: 99,
-    createdAt: "3月23日 19:30",
-  },
-];
+import { useLoadQuestionListData } from "../../../hooks/useLoadQuestionListData";
 
 const columns = [
   {
@@ -89,6 +44,9 @@ const columns = [
 
 const QuestionTrash: FC = () => {
   useTitle("问卷鑫 - 回收站");
+
+  const { loading, list } = useLoadQuestionListData({ isDeleted: true });
+
   const { confirm } = Modal;
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
 
@@ -128,7 +86,7 @@ const QuestionTrash: FC = () => {
             setSelectedRowKeys(selectedRowKey as string[]);
           },
         }}
-        dataSource={qeustionData}
+        dataSource={list}
         columns={columns}
         pagination={false}
         rowKey={(item) => item._id}
@@ -139,16 +97,22 @@ const QuestionTrash: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <div className={styles.left}>星标问卷</div>
+        <div className={styles.left}>回收站</div>
         <div className={styles.right}>
           <SearchList />
         </div>
       </div>
 
       <div className={styles.content}>
-        {qeustionData.length === 0 && <Empty description="暂无数据" />}
+        {!loading && list.length === 0 && <Empty description="暂无数据" />}
 
-        {qeustionData.length > 1 && tableElement}
+        {loading && (
+          <div style={{ textAlign: "center" }}>
+            <Spin />
+          </div>
+        )}
+
+        {!loading && list.length > 1 && tableElement}
       </div>
 
       <div className={styles.footer}>分页</div>

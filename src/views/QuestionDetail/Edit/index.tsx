@@ -1,23 +1,16 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 // import styles from "./index.module.scss";
-import { useParams } from "react-router-dom";
-import { getQuestionById } from "../../../service/modules/question";
+import { useLoadQuestionData } from "../../../hooks/useLoadQuestionData";
 
 const EditQuestion: FC = () => {
-  const { id = "" } = useParams(); // 获取动态路由参数
-  console.log(id);
+  const { loading, data } = useLoadQuestionData();
 
-  useEffect(() => {
-    const fn = async () => {
-      const res = await getQuestionById(id);
-      console.log(res);
-    };
-
-    fn();
-  });
   return (
     <>
-      <div>EditQuestion</div>
+      <div>
+        EditQuestion
+        <p>{loading ? "问卷加载中~~" : JSON.stringify(data)}</p>
+      </div>
     </>
   );
 };

@@ -38,6 +38,7 @@ const SearchList: FC = () => {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <Search
+        allowClear
         value={value}
         placeholder="请输入问卷名称"
         onChange={handleChange}

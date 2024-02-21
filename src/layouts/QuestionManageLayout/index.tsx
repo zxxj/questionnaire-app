@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import styles from "./index.module.scss";
 import { Button, message } from "antd";
@@ -9,22 +9,21 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 import { createQuestion } from "../../service/modules/question";
+import { useRequest } from "ahooks";
 
 const QuestionManageLayout: FC = () => {
   const nav = useNavigate();
+
+  // 获取当前路由路径
   const { pathname } = useLocation();
 
-  const [loading, setLoading] = useState(false);
-
-  const handleCreate = async () => {
-    setLoading(true);
-    const res = await createQuestion();
-    const { id } = res;
-    message.success("问卷创建成功!");
-
-    nav(`/detail/edit/${id}`);
-    setLoading(false);
-  };
+  const { loading, run: handleCreate } = useRequest(createQuestion, {
+    manual: true, // 手动触发
+    onSuccess(res) {
+      nav(`/detail/edit/${res.id}`); // 跳转到编辑页
+      message.success("问卷创建成功!");
+    },
+  });
 
   return (
     <div className={styles.container}>
