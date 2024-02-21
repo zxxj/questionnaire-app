@@ -14,16 +14,25 @@ const useLoadQuestionListData = (options: OptionsType) => {
 
   const fn = async () => {
     const keyword = searchParams.get(LIST_SEARCH_PARAM_KEY) || "";
-    const data = await getQuestionList({ keyword, isStar, isDeleted });
+    const page = Number(searchParams.get("page")) || 1;
+    const pageSize = Number(searchParams.get("pageSize")) || 10;
+
+    const data = await getQuestionList({
+      keyword,
+      isStar,
+      isDeleted,
+      page,
+      pageSize,
+    });
     return data;
   };
 
   const { loading, data = {} } = useRequest(fn, {
     refreshDeps: [searchParams],
   });
-  const { list } = data;
+  const { list, total } = data;
 
-  return { loading, list };
+  return { loading, list, total };
 };
 
 export { useLoadQuestionListData };

@@ -4,6 +4,7 @@ import { Table, Tag, Empty, Button, Space, Modal, Spin } from "antd";
 import { useTitle } from "ahooks";
 import SearchList from "../../../components/SearchList";
 import { useLoadQuestionListData } from "../../../hooks/useLoadQuestionListData";
+import ListPagination from "../../../components/ListPagination";
 
 const columns = [
   {
@@ -45,7 +46,7 @@ const columns = [
 const QuestionTrash: FC = () => {
   useTitle("问卷鑫 - 回收站");
 
-  const { loading, list } = useLoadQuestionListData({ isDeleted: true });
+  const { loading, list, total } = useLoadQuestionListData({ isDeleted: true });
 
   const { confirm } = Modal;
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
@@ -80,6 +81,8 @@ const QuestionTrash: FC = () => {
 
       {/* 表格 */}
       <Table
+        scroll={{ y: 600 }}
+        loading={loading}
         rowSelection={{
           type: "checkbox",
           onChange: (selectedRowKey) => {
@@ -115,7 +118,9 @@ const QuestionTrash: FC = () => {
         {!loading && list.length > 1 && tableElement}
       </div>
 
-      <div className={styles.footer}>分页</div>
+      <div className={styles.footer}>
+        <ListPagination total={total} />
+      </div>
     </div>
   );
 };

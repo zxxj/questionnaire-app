@@ -5,10 +5,11 @@ import { Empty, Spin } from "antd";
 import { useTitle } from "ahooks";
 import SearchList from "../../../components/SearchList";
 import { useLoadQuestionListData } from "../../../hooks/useLoadQuestionListData";
+import ListPagination from "../../../components/ListPagination/index";
 
 const QuestionStar: FC = () => {
   useTitle("问卷鑫 - 星标问卷");
-  const { loading, list } = useLoadQuestionListData({ isStar: true });
+  const { loading, list, total } = useLoadQuestionListData({ isStar: true });
 
   return (
     <>
@@ -35,7 +36,9 @@ const QuestionStar: FC = () => {
             })}
         </div>
 
-        <div className="footer">分页</div>
+        <div className={styles.footer}>
+          <ListPagination total={total} />
+        </div>
       </div>
     </>
   );
