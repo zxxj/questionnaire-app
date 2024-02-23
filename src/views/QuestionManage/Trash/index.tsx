@@ -81,7 +81,7 @@ const QuestionTrash: FC = () => {
 
       {/* 表格 */}
       <Table
-        scroll={{ y: 600 }}
+        scroll={{ y: 610 }}
         loading={loading}
         rowSelection={{
           type: "checkbox",
